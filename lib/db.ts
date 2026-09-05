@@ -15,7 +15,13 @@ export function json<T>(value: unknown, fallback: T): T {
   try { return value ? JSON.parse(String(value)) as T : fallback; } catch { return fallback; }
 }
 
-export type PageSection = { id:number; section_key:string; title_en:string; title_ru:string; body_en:string; body_ru:string; items_json:string; sort_order:number };
+export type PageSection = { id:number; section_key:string; title_en:string; title_ru:string; body_en:string; body_ru:string; items_json:string; items_ru_json:string; sort_order:number };
+
+export async function getContentPage(slug:string){ return (await db()).prepare("SELECT * FROM content_pages WHERE slug=?").bind(slug).first<Record<string,unknown>>(); }
+export async function getNewsPost(slug:string,locale:Locale){ return (await db()).prepare("SELECT * FROM news_posts WHERE slug=? AND locale=?").bind(slug,locale).first<Record<string,unknown>>(); }
+export async function getNews(locale:Locale){ return (await db()).prepare("SELECT * FROM news_posts WHERE locale=? ORDER BY published_at DESC").bind(locale).all<Record<string,unknown>>(); }
+export async function getSpeakers(){ return (await db()).prepare("SELECT * FROM speakers ORDER BY sort_order").all<Record<string,unknown>>(); }
+export async function getSettings(){ return (await db()).prepare("SELECT * FROM site_settings WHERE id=1").first<Record<string,unknown>>(); }
 
 export async function getHomepage(locale: Locale) {
   const database = await db();

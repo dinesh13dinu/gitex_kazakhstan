@@ -1,0 +1,7 @@
+"use client";
+import { useState } from "react";
+type Programme={title:string;body:string;image:string;slug:string};
+export function ProgrammeExperience({programmes,locale}:{programmes:Programme[];locale:"en"|"ru"}){
+ const [active,setActive]=useState(0); const p=programmes[active]||programmes[0]; if(!p)return null;
+ return <><div className="programme-tabs" role="tablist">{programmes.map((item,i)=><button role="tab" aria-selected={active===i} className={active===i?"active":""} onClick={()=>setActive(i)} key={item.slug}>{item.title}</button>)}</div><div className="programme-stage"><div><p className="programme-index">0{active+1}</p><h3>{p.title}</h3><p>{p.body}</p><div className="mini-stats"><b>200+<small>{locale==="en"?"STARTUPS":"СТАРТАПОВ"}</small></b><b>150+<small>{locale==="en"?"INVESTORS":"ИНВЕСТОРОВ"}</small></b><b>60<small>{locale==="en"?"COUNTRIES":"СТРАН"}</small></b></div><details><summary>{locale==="en"?"SUPERNOVA PITCH COMPETITION":"КОНКУРС SUPERNOVA PITCH"}</summary><p>{locale==="en"?"A global stage for high-growth founders.":"Международная сцена для быстрорастущих стартапов."}</p></details><details><summary>{locale==="en"?"CONNECT WITH 150+ INVESTORS":"ВСТРЕЧИ СО 150+ ИНВЕСТОРАМИ"}</summary></details><div className="programme-actions"><a href={`/${locale}/investors`}>{locale==="en"?"EXPLORE THE PROGRAMME":"О ПРОГРАММЕ"}</a><a href="#register">{locale==="en"?"REGISTER INTEREST":"ОСТАВИТЬ ЗАЯВКУ"}</a></div></div><img key={p.image} src={p.image} alt={p.title}/></div></>;
+}

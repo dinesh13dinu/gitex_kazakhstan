@@ -40,7 +40,8 @@ const collectionConfig = {
   news:{table:"news_posts",fields:["slug","locale","title","excerpt","body_md","cover_url","published_at","seo_json"]},
   ctas:{table:"ctas",id:"key",fields:["key","title_en","title_ru","blurb_en","blurb_ru","external_form_url"],noDelete:true},
   seo:{table:"seo_defaults",fields:["title_template_en","title_template_ru","description_en","description_ru","og_image"],singleton:true},
-  page_sections:{table:"page_sections",fields:["section_key","title_en","title_ru","body_en","body_ru","items_json","sort_order"]},
+  page_sections:{table:"page_sections",fields:["section_key","title_en","title_ru","body_en","body_ru","items_json","items_ru_json","sort_order"]},
+  content_pages:{table:"content_pages",fields:["slug","title_en","title_ru","eyebrow_en","eyebrow_ru","body_en","body_ru","hero_image","sections_json","sort_order"]},
 } as const;
 
 export async function saveCollection(form: FormData) {

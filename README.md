@@ -1,6 +1,6 @@
 # GITEX AI Kazakhstan CMS
 
-Cloudflare-native Next.js rebuild for GITEX AI Kazakhstan. The homepage reads every section from D1 in English and Russian. The authenticated CMS edits site settings, hero, highlights/gallery, statistics, programmes, speakers, testimonials, sponsors, news, CTAs, SEO, and the additional homepage sections.
+Cloudflare-native Next.js rebuild for GITEX AI Kazakhstan. The homepage and inner content pages read from D1 in English and Russian. The authenticated CMS edits site settings, hero, highlights/gallery, statistics, programmes, speakers, testimonials, sponsors, news, CTAs, SEO, homepage sections, and inner pages.
 
 Deployed Worker: `https://gitex-kazakhstan-cms.gitex-kazakhstan.workers.dev`
 
@@ -79,4 +79,12 @@ The current opaque D1 session design does not require `SESSION_SECRET`; it is re
 
 ## Content ownership
 
-D1 owns copy, image/file URLs, links, ordered lists, dates, speakers, sponsors, and news. R2 upload can replace URL entry later. Visual design, layout, and animation stay in code. Russian seed copy prefixed with `[RU needs review]` requires editorial review.
+D1 owns copy, image/file URLs, links, ordered lists, dates, speakers, sponsors, news, and inner pages. R2 upload can replace URL entry later. Visual design, layout, carousels, modal behaviour, programme interactions, counters, and reveal animation stay in code. The Russian draft is complete and no longer contains review-marker prefixes; a native-language editorial review is still recommended before the public launch.
+
+## Local routes
+
+Every route is available below both `/en` and `/ru`: homepage, speakers, investors, executive meetings, Supernova, gallery, cybersecurity, newsroom, news details, about, terms, privacy, and cookie policy. Form-oriented CTAs remain safe mock anchors until the client supplies production form destinations and consent wording.
+
+## Accessibility and responsive support
+
+The interface includes semantic navigation and dialog roles, visible keyboard focus, reduced-motion support, labelled carousel controls, localized document language, and responsive layouts at 520px and 900px breakpoints. Validate final client content and third-party media again at 390×844, 768×1024, 1024×768, and 1440×900 before production-domain launch.
