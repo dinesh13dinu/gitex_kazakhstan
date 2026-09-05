@@ -18,7 +18,7 @@ export default async function Admin({searchParams}:{searchParams:Promise<{status
   <CollectionEditor name="stats" title="Statistics" rows={cast(stats)} fields={["value","label_en","label_ru","suffix","sort_order"]}/>
   <CollectionEditor name="programmes" title="Programmes" rows={cast(programmes)} fields={["slug","title_en","title_ru","body_en","body_ru","image_url","cta_label_en","cta_label_ru","cta_href","sort_order"]}/>
   <CollectionEditor name="speakers" title="Speakers" rows={cast(speakers)} fields={["name_en","name_ru","title_en","title_ru","org_en","org_ru","country_en","country_ru","photo_url","bio_en","bio_ru","sort_order"]}/>
-  <CollectionEditor name="testimonials" title="Testimonials" rows={cast(testimonials)} fields={["quote_en","quote_ru","name_en","name_ru","role_en","role_ru","company_en","company_ru","logo_url","sort_order"]}/>
+  <CollectionEditor name="testimonials" title="Testimonials" rows={cast(testimonials)} fields={["quote_en","quote_ru","name_en","name_ru","role_en","role_ru","company_en","company_ru","logo_url","image_url","sort_order"]}/>
   <CollectionEditor name="sponsor_tiers" title="Sponsor tiers" rows={cast(tiers)} noDelete fields={["name_en","name_ru","sort_order"]}/>
   <CollectionEditor name="sponsor_logos" title="Sponsor logos" rows={cast(logos)} fields={["tier_id","name","image_url","href","sort_order"]}/>
   <CollectionEditor name="news" title="News" rows={cast(news)} fields={["slug","locale","title","excerpt","body_md","cover_url","published_at","seo_json"]}/>

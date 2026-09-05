@@ -34,7 +34,7 @@ const collectionConfig = {
   highlights:{table:"highlights",fields:["title_en","title_ru","body_en","body_ru","video_embed_url","gallery_images_json","factsheet_file_url"],singleton:true},
   programmes:{table:"programmes",fields:["slug","title_en","title_ru","body_en","body_ru","image_url","cta_label_en","cta_label_ru","cta_href","sort_order"]},
   speakers:{table:"speakers",fields:["name_en","name_ru","title_en","title_ru","org_en","org_ru","country_en","country_ru","photo_url","bio_en","bio_ru","sort_order"]},
-  testimonials:{table:"testimonials",fields:["quote_en","quote_ru","name_en","name_ru","role_en","role_ru","company_en","company_ru","logo_url","sort_order"]},
+  testimonials:{table:"testimonials",fields:["quote_en","quote_ru","name_en","name_ru","role_en","role_ru","company_en","company_ru","logo_url","image_url","sort_order"]},
   sponsor_tiers:{table:"sponsor_tiers",fields:["name_en","name_ru","sort_order"]},
   sponsor_logos:{table:"sponsor_logos",fields:["tier_id","name","image_url","href","sort_order"]},
   news:{table:"news_posts",fields:["slug","locale","title","excerpt","body_md","cover_url","published_at","seo_json"]},
