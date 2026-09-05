@@ -1,0 +1,24 @@
+name = "gitex-kazakhstan-cms"
+main = ".open-next/worker.js"
+compatibility_date = "2026-09-05"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+[[d1_databases]]
+binding = "DB"
+database_name = "gitex-kazakhstan-cms"
+database_id = "fea22cc1-9b0b-498b-83c3-d66488fffd2d"
+migrations_dir = "migrations"
+
+# R2 upload binding stub. Enable R2 in the Cloudflare account, create the bucket,
+# then uncomment this block. Brief #1 uses URL fields and does not access MEDIA.
+# [[r2_buckets]]
+# binding = "MEDIA"
+# bucket_name = "gitex-kazakhstan-media"
