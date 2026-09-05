@@ -1,6 +1,6 @@
 type IconName="linkedin"|"instagram"|"threads"|"facebook"|"youtube"|"telegram"|"tiktok";
 
-const links:{name:IconName;label:string;href:string}[]=[
+export const socialLinks:{name:IconName;label:string;href:string}[]=[
   {name:"linkedin",label:"LinkedIn",href:"https://www.linkedin.com/company/gitexaikazakhstan/"},
   {name:"instagram",label:"Instagram",href:"https://www.instagram.com/gitexaikazakhstan/"},
   {name:"threads",label:"Threads",href:"https://www.threads.com/@gitexaikazakhstan"},
@@ -10,7 +10,7 @@ const links:{name:IconName;label:string;href:string}[]=[
   {name:"tiktok",label:"TikTok",href:"https://www.tiktok.com/@gitexaicentralasia"},
 ];
 
-function SocialIcon({name}:{name:IconName}){
+export function SocialIcon({name}:{name:IconName}){
   if(name==="linkedin") return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 7.8H1.6V22h3.6V7.8ZM3.4 2A2.1 2.1 0 1 0 3.4 6.2 2.1 2.1 0 0 0 3.4 2ZM22.4 13.9c0-4.3-2.3-6.4-5.4-6.4-2.5 0-3.6 1.4-4.2 2.3v-2H9.2V22h3.6v-7c0-1.9.4-3.7 2.7-3.7 2.3 0 2.3 2.1 2.3 3.8V22h3.6l1-8.1Z"/></svg>;
   if(name==="instagram") return <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="none" stroke="currentColor" strokeWidth="2.2"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" strokeWidth="2.2"/><circle cx="17.8" cy="6.3" r="1.25"/></svg>;
   if(name==="threads") return <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.7 8.5c-.8-3-2.7-4.5-5.8-4.5-4.4 0-7 3.1-7 8s2.6 8 7.2 8c4 0 6.7-2.1 6.7-5.2 0-2.5-2-4.1-5.1-4.1-2.8 0-4.6 1.3-4.6 3.3 0 1.7 1.3 2.8 3.2 2.8 3.4 0 5.5-2.8 5.5-6.4 0-1.5-.2-2.7-.7-3.7"/></svg>;
@@ -21,5 +21,9 @@ function SocialIcon({name}:{name:IconName}){
 }
 
 export function SocialRail({label}:{label:string}){
-  return <aside className="social-rail" aria-label={label}>{links.map(link=><a key={link.name} href={link.href} aria-label={link.label} target="_blank" rel="noreferrer"><SocialIcon name={link.name}/></a>)}</aside>;
+  return <aside className="social-rail" aria-label={label}>{socialLinks.map(link=><a key={link.name} href={link.href} aria-label={link.label} target="_blank" rel="noreferrer"><SocialIcon name={link.name}/></a>)}</aside>;
+}
+
+export function SocialLinks({label}:{label:string}){
+  return <nav className="footer-social" aria-label={label}>{socialLinks.map(link=><a key={link.name} href={link.href} aria-label={link.label} target="_blank" rel="noreferrer"><SocialIcon name={link.name}/></a>)}</nav>;
 }
