@@ -2,9 +2,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getContentPage,getNews,getSettings,getSpeakers,json,localized,type Locale } from "@/lib/db";
 import { SiteHeader } from "@/components/SiteHeader";
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 
 export const dynamic="force-dynamic";
 type Block={title_en:string;title_ru:string;body_en:string;body_ru:string};
+export async function generateMetadata({params}:{params:Promise<{locale:string;slug:string}>}):Promise<Metadata>{const {locale:raw,slug}=await params;const locale=(raw==="ru"?"ru":"en") as Locale;const page=await getContentPage(slug);if(!page)return {};return pageMetadata({locale,path:`/${locale}/${slug}`,title:localized(page,"title",locale),description:localized(page,"body",locale),image:String(page.hero_image||"")});}
 export default async function ContentPage({params}:{params:Promise<{locale:string;slug:string}>}){
  const {locale:raw,slug}=await params;if(raw!=="en"&&raw!=="ru")notFound();const locale=raw as Locale;
  const [page,settings]=await Promise.all([getContentPage(slug),getSettings()]);if(!page||!settings)notFound();

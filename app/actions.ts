@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createSession, destroySession, requireAdmin, verifyPassword } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { seoKeywords, seoSlug } from "@/lib/seo";
 
 function text(form: FormData, key: string) { return String(form.get(key) ?? "").trim(); }
 
@@ -50,6 +51,8 @@ export async function saveCollection(form: FormData) {
   const config=collectionConfig[key]; if(!config) throw new Error("Unsupported collection");
   let rows:Record<string,unknown>[]; try{rows=JSON.parse(text(form,"payload"))}catch{throw new Error("Invalid collection data")}
   if(!Array.isArray(rows)) throw new Error("Invalid collection data");
+  if(key==="news"||key==="content_pages"||key==="programmes") rows=rows.map(row=>({...row,slug:seoSlug(String(row.slug||row.title||row.title_en||"gitex-ai-kazakhstan"))}));
+  if(key==="news") rows=rows.map(row=>{let existing:Record<string,unknown>={};try{existing=JSON.parse(String(row.seo_json||"{}"))}catch{}return {...row,seo_json:JSON.stringify({title:String(row.title||""),description:String(row.excerpt||""),keywords:seoKeywords(`${row.title||""} ${row.excerpt||""}`),image:String(row.cover_url||""),...(existing.noIndex?{noIndex:true}:{})})}});
   const database=await db(); const statements=[]; const idField="id" in config&&config.id?config.id:"id";
   if("singleton" in config&&config.singleton){
     const row=rows[0]||{}; const values=config.fields.map(f=>String(row[f]??""));

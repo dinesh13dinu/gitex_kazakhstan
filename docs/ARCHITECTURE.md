@@ -10,7 +10,8 @@ Next.js App Router runs on Cloudflare Workers through the OpenNext Cloudflare ad
 - Server Components read the `DB` D1 binding through OpenNext's Cloudflare context.
 - Content pages are dynamic so an editor's saved change appears on the next request.
 - Static assets are emitted to `.open-next/assets` and served by the `ASSETS` binding.
-- `MEDIA` is an R2 binding stub. Brief #1 stores external image/file URLs and video embed URLs; an upload service can be added without changing content tables.
+- Media currently uses external URLs because R2 is not enabled on the client Cloudflare account (API error 10042). The upload design uses SEO slugs from CMS titles and can be enabled without changing content tables once R2 is activated.
+- `SITE_URL` is the single canonical-origin setting. Change it to the final production domain when connected; canonicals, language alternates, structured data, robots and the sitemap follow automatically.
 
 ## CMS and data flow
 
