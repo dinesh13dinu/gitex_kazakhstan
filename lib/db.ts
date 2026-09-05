@@ -36,7 +36,7 @@ export async function getHomepage(locale: Locale) {
     database.prepare("SELECT * FROM testimonials ORDER BY sort_order").all<Record<string, unknown>>(),
     database.prepare("SELECT * FROM sponsor_tiers ORDER BY sort_order").all<Record<string, unknown>>(),
     database.prepare("SELECT * FROM sponsor_logos ORDER BY sort_order").all<Record<string, unknown>>(),
-    database.prepare("SELECT * FROM news_posts WHERE locale=? ORDER BY published_at DESC LIMIT 3").bind(locale).all<Record<string, unknown>>(),
+    database.prepare("SELECT * FROM news_posts WHERE locale=? ORDER BY published_at DESC LIMIT 4").bind(locale).all<Record<string, unknown>>(),
     database.prepare("SELECT * FROM ctas").all<Record<string, unknown>>(),
     database.prepare("SELECT * FROM page_sections ORDER BY sort_order").all<PageSection>(),
   ]);
