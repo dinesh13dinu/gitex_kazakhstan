@@ -15,9 +15,11 @@ export function json<T>(value: unknown, fallback: T): T {
   try { return value ? JSON.parse(String(value)) as T : fallback; } catch { return fallback; }
 }
 
+export type PageSection = { id:number; section_key:string; title_en:string; title_ru:string; body_en:string; body_ru:string; items_json:string; sort_order:number };
+
 export async function getHomepage(locale: Locale) {
   const database = await db();
-  const [settings, hero, highlights, seo, stats, programmes, speakers, testimonials, tiers, logos, news, ctas] = await Promise.all([
+  const [settings, hero, highlights, seo, stats, programmes, speakers, testimonials, tiers, logos, news, ctas, sections] = await Promise.all([
     database.prepare("SELECT * FROM site_settings WHERE id=1").first<Record<string, unknown>>(),
     database.prepare("SELECT * FROM hero WHERE id=1").first<Record<string, unknown>>(),
     database.prepare("SELECT * FROM highlights WHERE id=1").first<Record<string, unknown>>(),
@@ -30,7 +32,8 @@ export async function getHomepage(locale: Locale) {
     database.prepare("SELECT * FROM sponsor_logos ORDER BY sort_order").all<Record<string, unknown>>(),
     database.prepare("SELECT * FROM news_posts WHERE locale=? ORDER BY published_at DESC LIMIT 3").bind(locale).all<Record<string, unknown>>(),
     database.prepare("SELECT * FROM ctas").all<Record<string, unknown>>(),
+    database.prepare("SELECT * FROM page_sections ORDER BY sort_order").all<PageSection>(),
   ]);
   if (!settings || !hero || !highlights || !seo) throw new Error("CMS is not seeded. Run npm run db:migrate && npm run db:seed.");
-  return { settings, hero, highlights, seo, stats: stats.results, programmes: programmes.results, speakers: speakers.results, testimonials: testimonials.results, tiers: tiers.results, logos: logos.results, news: news.results, ctas: ctas.results };
+  return { settings, hero, highlights, seo, stats: stats.results, programmes: programmes.results, speakers: speakers.results, testimonials: testimonials.results, tiers: tiers.results, logos: logos.results, news: news.results, ctas: ctas.results, sections: sections.results };
 }
