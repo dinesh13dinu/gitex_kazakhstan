@@ -1,0 +1,13 @@
+UPDATE site_settings SET logo_url='https://www.gitexcac.com/images/logocac-New.png' WHERE id=1;
+UPDATE hero SET primary_ctas_json='[{"label":{"en":"BOOK A STAND","ru":"[RU needs review] ЗАБРОНИРОВАТЬ СТЕНД"},"href":"#exhibit","style":"red"},{"label":{"en":"BOOK A POD","ru":"[RU needs review] ЗАБРОНИРОВАТЬ ПОД"},"href":"#investors","style":"cyan"},{"label":{"en":"PRE-REGISTER TO VISIT","ru":"[RU needs review] РЕГИСТРАЦИЯ"},"href":"#register","style":"primary"}]' WHERE id=1;
+UPDATE highlights SET video_embed_url='https://www.youtube.com/embed/hbnw0UdSQeA?autoplay=1&mute=1&loop=1&controls=0&playlist=hbnw0UdSQeA', gallery_images_json='["https://www.gitexcac.com/images/Presidential-Images.jpg","https://www.gitexcac.com/images/VM_09775.jpg","https://www.gitexcac.com/images/MAX00984.jpg","https://www.gitexcac.com/images/VM_01145.jpg","https://www.gitexcac.com/images/img_0022.jpg","https://www.gitexcac.com/images/MAX01827.jpg"]' WHERE id=1;
+UPDATE programmes SET image_url='https://www.gitexcac.com/contents/Theme-2025/images/GACASIAthumb0502.jpg' WHERE slug='north-star';
+UPDATE programmes SET image_url='https://www.gitexcac.com/images/MAX01827-img.jpg' WHERE slug='investor-programme';
+UPDATE programmes SET image_url='https://www.gitexcac.com/images/Ai-council-Meeting.jpg' WHERE slug='conference';
+UPDATE speakers SET photo_url='https://www.gitexcac.com/Uploads//Posts/Speakers/Speaker_1.jpg.jpeg' WHERE name_en='H.E. Zhaslan Madiyev';
+UPDATE speakers SET photo_url='https://www.gitexcac.com/Uploads//Posts/Kai-Fu%20Lee.jpg' WHERE name_en='Dr. Kai-Fu Lee';
+UPDATE speakers SET photo_url='https://www.gitexcac.com/Uploads//Posts/Speakers/Lambert%20Hogenhout.jpg' WHERE name_en='Lambert Hogenhout';
+UPDATE sponsor_logos SET image_url='https://www.gitexcac.com/images/HW_POS_RGB.png' WHERE name='Huawei';
+UPDATE sponsor_logos SET image_url='https://www.gitexcac.com/images/PresightMaster.png' WHERE name='Presight';
+UPDATE sponsor_logos SET image_url='https://www.gitexcac.com/images/LenovoLogo-POS-Red.png' WHERE name='Lenovo';
+UPDATE sponsor_logos SET image_url='https://www.gitexcac.com/images/H3C-up.png' WHERE name='H3C';

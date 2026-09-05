@@ -1,0 +1,11 @@
+"use client";
+import { useMemo, useState } from "react";
+import { saveCollection } from "@/app/actions";
+
+type Row=Record<string,string|number|null>;
+export function CollectionEditor({name,title,rows:initial,fields,single=false,noDelete=false}:{name:string;title:string;rows:Row[];fields:string[];single?:boolean;noDelete?:boolean}){
+ const [rows,setRows]=useState(initial); const payload=useMemo(()=>JSON.stringify(rows),[rows]);
+ const update=(i:number,f:string,v:string)=>setRows(old=>old.map((r,n)=>n===i?{...r,[f]:v}:r));
+ const move=(i:number,d:number)=>setRows(old=>{const next=[...old],j=i+d;if(j<0||j>=next.length)return old;[next[i],next[j]]=[next[j],next[i]];return next.map((r,n)=>fields.includes("sort_order")?{...r,sort_order:n+1}:r)});
+ return <details className="collection-editor" id={`collection-${name}`}><summary><span>{title}</span><b>{rows.length} {rows.length===1?"entry":"entries"}</b></summary><form action={saveCollection}><input type="hidden" name="collection" value={name}/><input type="hidden" name="payload" value={payload}/><div className="editor-rows">{rows.map((row,i)=><article className="editor-row" key={String(row.id??row.key??row.section_key??i)}><div className="row-toolbar"><strong>{String(row.title_en??row.title??row.name_en??row.name??row.section_key??`${title} ${i+1}`)}</strong>{!single&&<><button type="button" onClick={()=>move(i,-1)} disabled={i===0}>↑</button><button type="button" onClick={()=>move(i,1)} disabled={i===rows.length-1}>↓</button>{!noDelete&&<button type="button" className="danger" onClick={()=>setRows(old=>old.filter((_,n)=>n!==i))}>Remove</button>}</>}</div><div className="form-grid">{fields.map(f=><label className="field" key={f}><span>{f.replaceAll("_"," ")}</span>{/body|blurb|quote|json|bio|description/.test(f)?<textarea value={String(row[f]??"")} onChange={e=>update(i,f,e.target.value)}/>:<input value={String(row[f]??"")} onChange={e=>update(i,f,e.target.value)}/>}</label>)}</div></article>)}</div>{!single&&!noDelete&&<button type="button" className="add-row" onClick={()=>setRows(old=>[...old,Object.fromEntries(fields.map(f=>[f,f==="sort_order"?old.length+1:""]))])}>+ ADD ENTRY</button>}<button className="save">SAVE {title.toUpperCase()}</button></form></details>
+}
