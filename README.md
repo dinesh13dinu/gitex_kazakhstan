@@ -1,6 +1,6 @@
 # GITEX AI Kazakhstan CMS
 
-Cloudflare-native Next.js rebuild foundation for GITEX AI Kazakhstan. The homepage reads every section from D1 in English and Russian, and the minimal authenticated CMS edits site settings and the hero.
+Cloudflare-native Next.js rebuild for GITEX AI Kazakhstan. The homepage reads every section from D1 in English and Russian. The authenticated CMS edits site settings, hero, highlights/gallery, statistics, programmes, speakers, testimonials, sponsors, news, CTAs, SEO, and the additional homepage sections.
 
 Deployed Worker: `https://gitex-kazakhstan-cms.gitex-kazakhstan.workers.dev`
 
@@ -32,7 +32,7 @@ Seed login (local development only):
 - Email: `admin@gitex.local`
 - Password: `ChangeMe123!`
 
-Change the seeded credentials before any public deployment. To generate a replacement hash, use PBKDF2-SHA256 with 210,000 iterations in the format documented by `lib/auth.ts`, then update the remote admin row.
+Change the seeded credentials before client handover. Generate replacement hashes with PBKDF2-SHA256 using no more than 100,000 iterations (the current Cloudflare Workers Web Crypto limit) in the format documented by `lib/auth.ts`, then update the remote admin row.
 
 ## Scripts
 
